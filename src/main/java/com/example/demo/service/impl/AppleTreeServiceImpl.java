@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.dao.Apple;
+import com.example.demo.dao.Colour;
 import com.example.demo.dao.Tree;
 import com.example.demo.repository.TreeRepository;
 import com.example.demo.service.AppleTreeService;
@@ -22,6 +23,7 @@ public class AppleTreeServiceImpl implements AppleTreeService {
 
     @Override
     public void execute() {
+        Apple redApple = Apple.builder().colour(Colour.RED).build();
         try {
             Tree tree = treeRepository.findOne((long) 1);
             List<Apple> apples = tree.getApples();
