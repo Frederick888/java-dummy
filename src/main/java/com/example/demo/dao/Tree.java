@@ -27,7 +27,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @DiscriminatorColumn(name = "colour")
 @EqualsAndHashCode(exclude = { "apples" })
-public class Tree<APPLE extends Apple> {
+public abstract class Tree<APPLE extends Apple> {
     @Id
     @GeneratedValue
     private Long id;
