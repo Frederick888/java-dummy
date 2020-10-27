@@ -1,29 +1,39 @@
 package com.example.demo.dao;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @DiscriminatorColumn(name = "colour")
-public class Apple {
+@EqualsAndHashCode(exclude = { "tree" })
+public class Apple<TREE extends Tree> {
     @Id
     @GeneratedValue
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(insertable = false, updatable = false)
+    @Column(nullable = false, insertable = false, updatable = false)
     private Colour colour;
 
-    @JoinColumn(insertable = false, updatable = false)
+    @JoinColumn(name = "tree_id", insertable = false, updatable = false)
     @ManyToOne
-    private Tree tree;
+    private TREE tree;
 }
