@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+sourceSets {
+    testkit {
+        compileClasspath += main.compileClasspath + main.output
+        runtimeClasspath += main.runtimeClasspath + main.output
+        java {
+        }
+    }
+}
+
+java {
+    registerFeature('testkit') {
+        usingSourceSet(sourceSets.testkit)
+    }
+}
+
+dependencies {
+    implementation "io.vertx:vertx-core:4.4.6"
+
+    testkitImplementation "io.vertx:vertx-core:4.4.6"
+}
+
+repositories {
+    mavenCentral()
+}

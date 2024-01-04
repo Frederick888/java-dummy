@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+subprojects { Project subProject ->
+    apply plugin: "idea"
+    apply plugin: "eclipse"
+
+    subProject.group = "com.example.java-dummy"
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
+    test {
+        jvmArgs("--enable-preview")
+    }
+}

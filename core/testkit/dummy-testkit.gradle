@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation "io.vertx:vertx-core:4.4.6"
+    implementation(project(":dummy-major"))
+    implementation(project(":dummy-major")) {
+        capabilities {
+            requireCapability("com.example.java-dummy:dummy-major-testkit")
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}

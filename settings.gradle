@@ -1,0 +1,11 @@
+rootProject.name = 'java-dummy'
+
+include "dummy-major"
+project(':dummy-major').projectDir = file('./core/major')
+
+include "dummy-testkit"
+project(':dummy-testkit').projectDir = file('./core/testkit')
+
+rootProject.children.each { subproject ->
+    subproject.buildFileName = "${subproject.name}.gradle"
+}
